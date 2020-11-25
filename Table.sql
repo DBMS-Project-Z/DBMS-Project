@@ -57,7 +57,7 @@ CREATE TABLE `doctor` (
   `dname` varchar(255) NOT NULL,
   `dmobile` int(255) NOT NULL,
   `demail` varchar(255) NOT NULL,
-  `dspec` varchar(255) NOT NULL
+  -- `dspec` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
