@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `patient` (
-  `pid`
+  `pid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `pname` varchar(255) NOT NULL,
   `pmobile` int(255) NOT NULL,
   `pemail` varchar(255) NOT NULL
@@ -40,16 +40,20 @@ CREATE TABLE `patient` (
 --
 -- can we autoinsert id????
 INSERT INTO `patient` (`pname`, `pmobile`,`pemail`) VALUES
-('ram', '11223344',`email@email.com`);
-('shyam','9452162510','hey@hey.com')
+('ram', '11223344',`email@email.com`),
+('shyam','9452162510','hey@hey.com');
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `doctor`
 --id??????????????
 
+-- Indexing or creating a primary key for patient table
+ALTER TABLE `patient`
+ADD PRIMARY KEY (`pid`);
+
 CREATE TABLE `doctor` (
-  `did` 
+  `did` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `dname` varchar(255) NOT NULL,
   `dmobile` int(255) NOT NULL,
   `demail` varchar(255) NOT NULL,
@@ -68,12 +72,16 @@ INSERT INTO `doctor` (`usn`, `book_id`, `book_name`) VALUES
 
 -- --------------------------------------------------------
 
+-- Creating primary key for doctor table
+ALTER TABLE `doctor`
+ADD PRIMARY KEY (`did`);
+
 --
 -- Table structure for table `hospital`
 --
 
 CREATE TABLE `hospital` (
-  `hid` varchar(255) NOT NULL,
+  `hid` int(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `hname` varchar(255) NOT NULL,
   `htype` varchar(255) NOT NULL,
   `haddress` varchar(255) NOT NULL
@@ -89,6 +97,10 @@ INSERT INTO `hospital` (`sid`, `username`, `name`, `password`, `email`) VALUES
 ('', 'ajayk99', 'dental', 'erth');
 
 -- --------------------------------------------------------
+
+-- creating a primary key for hospital table
+ALTER TABLE `hospital`
+ADD PRIMARY KEY (`hid`);
 
 --
 -- Table structure for table `category`
