@@ -137,6 +137,5 @@ CREATE TABLE `pres` (
 
 INSERT INTO `pres` (`medicine`, `prescription` ) VALUES
 ('dosename', 'tice a day')
-('dosename', 'tice a day')
---
+('dosename', 'tice a day');
 
