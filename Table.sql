@@ -28,10 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `patient` (
-  `pid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `pname` varchar(255) NOT NULL,
-  `pmobile` int(255) NOT NULL,
-  `pemail` varchar(255) NOT NULL
+  `p_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `p_name` varchar(255) NOT NULL,
+  `p_mobile` int(255) NOT NULL,
+  `p_email` varchar(255) NOT NULL,
+  PRIMARY KEY (`p_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -48,15 +49,16 @@ INSERT INTO `patient` (`pname`, `pmobile`,`pemail`) VALUES
 --id??????????????
 
 -- Indexing or creating a primary key for patient table
-ALTER TABLE `patient`
-ADD PRIMARY KEY (`pid`);
+-- ALTER TABLE `patient`
+-- ADD PRIMARY KEY (`pid`);
 
 CREATE TABLE `doctor` (
-  `did` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `dname` varchar(255) NOT NULL,
-  `dmobile` int(255) NOT NULL,
-  `demail` varchar(255) NOT NULL,
+  `doc_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `doc_name` varchar(255) NOT NULL,
+  `doc_mobile` int(255) NOT NULL,
+  `doc_email` varchar(255) NOT NULL,
   -- `dspec` varchar(255) NOT NULL
+  PRIMARY KEY (`doc_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -72,18 +74,19 @@ INSERT INTO `doctor` (`usn`, `book_id`, `book_name`) VALUES
 -- --------------------------------------------------------
 
 -- Creating primary key for doctor table
-ALTER TABLE `doctor`
-ADD PRIMARY KEY (`did`);
+-- ALTER TABLE `doctor`
+-- ADD PRIMARY KEY (`did`);
 
 --
 -- Table structure for table `hospital`
 --
 
 CREATE TABLE `hospital` (
-  `hid` int(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `hname` varchar(255) NOT NULL,
-  `htype` varchar(255) NOT NULL,
-  `haddress` varchar(255) NOT NULL
+  `hos_id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `hos_name` varchar(255) NOT NULL,
+  `hos_type` varchar(255) NOT NULL,
+  `hos_address` varchar(255) NOT NULL,
+  CONSTRAINT PK_hos PRIMARY KEY (`hos_id`,`hos_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -98,20 +101,21 @@ INSERT INTO `hospital` (`sid`, `username`, `name`, `password`, `email`) VALUES
 -- --------------------------------------------------------
 
 -- creating a primary key for hospital table
-ALTER TABLE `hospital`
-ADD PRIMARY KEY (`hid`);
+-- ALTER TABLE `hospital`
+-- ADD PRIMARY KEY (`hid`);
 
-ALTER TABLE `hospital`
-ADD PRIMARY KEY (`hname`);
+-- ALTER TABLE `hospital`
+-- ADD PRIMARY KEY (`hname`);
 
 --
 -- Table structure for table `category`
 --
 
 CREATE TABLE `category` (
-  `ctype` varchar(255) NOT NULL,
-  `cdescription` varchar(255) NOT NULL,
-  `csymptoms` varchar(255) NOT NULL
+  `cat_type` varchar(255) NOT NULL,
+  `cat_description` varchar(255) NOT NULL,
+  `cat_symptoms` varchar(255) NOT NULL,
+  PRIMARY KEY (`cat_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -126,16 +130,18 @@ INSERT INTO `category` (`ctype`, `cdescription`, `csymptoms` ) VALUES
 -- Table structure for table `Prescription`
 --
 
-CREATE TABLE `pres` (
+CREATE TABLE `prescription` (
+  `pres_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `medicine` varchar(255) NOT NULL,
-  `prescription` varchar(255) NOT NULL,
+  -- `prescription` varchar(255) NOT NULL,
+  PRIMARY KEY (`pres_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `pres` (`medicine`, `prescription` ) VALUES
+INSERT INTO `prescription` (`medicine`, `prescription` ) VALUES
 ('dosename', 'tice a day')
 ('dosename', 'tice a day');
 
