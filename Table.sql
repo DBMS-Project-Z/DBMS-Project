@@ -32,8 +32,14 @@ CREATE TABLE `patient` (
   `p_name` varchar(255) NOT NULL,
   `p_mobile` int(255) NOT NULL,
   `p_email` varchar(255) NOT NULL,
-  PRIMARY KEY (`p_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `p_cat` varchar(225),
+  `p_doc` int(10),
+  `p_pres` int(10),
+  PRIMARY KEY (`p_id`),
+  CONSTRAINT FK_patient_cat FOREIGN KEY (`p_cat`) REFERENCES `category`(`c_type`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_patient_doc FOREIGN KEY (`p_doc`) REFERENCES `doctor`(`doc_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_patient_pres FOREIGN KEY (`p_pres`) REFERENCES `prescription`(`pres_id`) ON DELETE CASCADE ON UPDATE CASCADE
+ ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `patient`
@@ -57,8 +63,10 @@ CREATE TABLE `doctor` (
   `doc_name` varchar(255) NOT NULL,
   `doc_mobile` int(255) NOT NULL,
   `doc_email` varchar(255) NOT NULL,
+  `doc_hos` int(10),
   -- `dspec` varchar(255) NOT NULL
-  PRIMARY KEY (`doc_id`)
+  PRIMARY KEY (`doc_id`),
+  CONSTRAINT FK_doctor_hos FOREIGN KEY (`doc_hos`) REFERENCES `hospital`(`hos_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -82,11 +90,11 @@ INSERT INTO `doctor` (`usn`, `book_id`, `book_name`) VALUES
 --
 
 CREATE TABLE `hospital` (
-  `hos_id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `hos_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `hos_name` varchar(255) NOT NULL,
   `hos_type` varchar(255) NOT NULL,
   `hos_address` varchar(255) NOT NULL,
-  CONSTRAINT PK_hos PRIMARY KEY (`hos_id`,`hos_name`)
+  PRIMARY KEY (`hos_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -133,8 +141,12 @@ INSERT INTO `category` (`ctype`, `cdescription`, `csymptoms` ) VALUES
 CREATE TABLE `prescription` (
   `pres_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `medicine` varchar(255) NOT NULL,
+  `pres_cat` varchar(255),
+  `pres_doc` int(10),
+  CONSTRAINT FK_prescription_cat FOREIGN KEY (`pres_cat`) REFERENCES `category`(`c_type`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_prescription_doc FOREIGN KEY (`pres_doc`) REFERENCES `doctor`(`doc_id`) ON DELETE CASCADE ON UPDATE CASCADE
   -- `prescription` varchar(255) NOT NULL,
-  PRIMARY KEY (`pres_id`)
+  PRIMARY KEY (`pres_id`),
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
