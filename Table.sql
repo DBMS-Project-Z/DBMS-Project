@@ -16,7 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8mb4 */
 
 --
 --
@@ -33,8 +33,8 @@ CREATE TABLE `patient` (
   `p_mobile` int(255) NOT NULL,
   `p_email` varchar(255) NOT NULL,
   `p_cat` varchar(225) NOT NULL,
-  `p_doc` int(10) NOT NULL,
-  `p_pres` int(10) NOT NULL,
+  `p_doc` int(10) UNSIGNED NOT NULL,
+  `p_pres` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`p_id`),
   CONSTRAINT FK_patient_cat FOREIGN KEY (`p_cat`) REFERENCES `category`(`cat_type`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT FK_patient_doc FOREIGN KEY (`p_doc`) REFERENCES `doctor`(`doc_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -63,7 +63,7 @@ CREATE TABLE `doctor` (
   `doc_name` varchar(255) NOT NULL,
   `doc_mobile` int(255) NOT NULL,
   `doc_email` varchar(255) NOT NULL,
-  `doc_hos` int(10) NOT NULL,
+  `doc_hos` int(10) UNSIGNED NOT NULL,
   -- `dspec` varchar(255) NOT NULL
   PRIMARY KEY (`doc_id`),
   CONSTRAINT FK_doctor_hos FOREIGN KEY (`doc_hos`) REFERENCES `hospital`(`hos_id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -122,7 +122,7 @@ INSERT INTO `hospital` (`sid`, `username`, `name`, `password`, `email`) VALUES
 CREATE TABLE `category` (
   `cat_type` varchar(255) NOT NULL,
   `cat_description` varchar(255) NOT NULL,
-  `cat_symptoms` varchar(255) NOT NULL,
+  `cat_criteria` varchar(255) NOT NULL,
   PRIMARY KEY (`cat_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -141,8 +141,8 @@ INSERT INTO `category` (`ctype`, `cdescription`, `csymptoms` ) VALUES
 CREATE TABLE `prescription` (
   `pres_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `medicine` varchar(255) NOT NULL,
-  `pres_cat` varchar(255),
-  `pres_doc` int(10) NOT NULL,
+  `pres_cat` varchar(255) NOT NULL,
+  `pres_doc` int(10) UNSIGNED NOT NULL,
   -- `prescription` varchar(255) NOT NULL,
   PRIMARY KEY (`pres_id`),
   CONSTRAINT FK_prescription_cat FOREIGN KEY (`pres_cat`) REFERENCES `category`(`cat_type`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -156,4 +156,5 @@ CREATE TABLE `prescription` (
 INSERT INTO `prescription` (`medicine`, `prescription` ) VALUES
 ('dosename', 'tice a day')
 ('dosename', 'tice a day');
+
 
