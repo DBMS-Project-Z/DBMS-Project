@@ -32,11 +32,11 @@ CREATE TABLE `patient` (
   `p_name` varchar(255) NOT NULL,
   `p_mobile` int(255) NOT NULL,
   `p_email` varchar(255) NOT NULL,
-  `p_cat` varchar(225),
-  `p_doc` int(10),
-  `p_pres` int(10),
+  `p_cat` varchar(225) NOT NULL,
+  `p_doc` int(10) NOT NULL,
+  `p_pres` int(10) NOT NULL,
   PRIMARY KEY (`p_id`),
-  CONSTRAINT FK_patient_cat FOREIGN KEY (`p_cat`) REFERENCES `category`(`c_type`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_patient_cat FOREIGN KEY (`p_cat`) REFERENCES `category`(`cat_type`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT FK_patient_doc FOREIGN KEY (`p_doc`) REFERENCES `doctor`(`doc_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT FK_patient_pres FOREIGN KEY (`p_pres`) REFERENCES `prescription`(`pres_id`) ON DELETE CASCADE ON UPDATE CASCADE
  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -63,7 +63,7 @@ CREATE TABLE `doctor` (
   `doc_name` varchar(255) NOT NULL,
   `doc_mobile` int(255) NOT NULL,
   `doc_email` varchar(255) NOT NULL,
-  `doc_hos` int(10),
+  `doc_hos` int(10) NOT NULL,
   -- `dspec` varchar(255) NOT NULL
   PRIMARY KEY (`doc_id`),
   CONSTRAINT FK_doctor_hos FOREIGN KEY (`doc_hos`) REFERENCES `hospital`(`hos_id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -142,11 +142,11 @@ CREATE TABLE `prescription` (
   `pres_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `medicine` varchar(255) NOT NULL,
   `pres_cat` varchar(255),
-  `pres_doc` int(10),
-  CONSTRAINT FK_prescription_cat FOREIGN KEY (`pres_cat`) REFERENCES `category`(`c_type`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT FK_prescription_doc FOREIGN KEY (`pres_doc`) REFERENCES `doctor`(`doc_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `pres_doc` int(10) NOT NULL,
   -- `prescription` varchar(255) NOT NULL,
   PRIMARY KEY (`pres_id`),
+  CONSTRAINT FK_prescription_cat FOREIGN KEY (`pres_cat`) REFERENCES `category`(`cat_type`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_prescription_doc FOREIGN KEY (`pres_doc`) REFERENCES `doctor`(`doc_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
