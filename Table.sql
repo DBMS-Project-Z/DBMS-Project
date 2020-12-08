@@ -16,7 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 --
@@ -28,12 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `patient` (
-  `p_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `p_id` varchar(15) NOT NULL,
   `p_name` varchar(255) NOT NULL,
   `p_mobile` int(255) NOT NULL,
   `p_email` varchar(255) NOT NULL,
   `p_cat` varchar(225) NOT NULL,
-  `p_doc` int(10) UNSIGNED NOT NULL,
+  `p_doc` varchar(15) NOT NULL,
   `p_pres` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`p_id`),
   CONSTRAINT FK_patient_cat FOREIGN KEY (`p_cat`) REFERENCES `category`(`cat_type`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -41,13 +41,18 @@ CREATE TABLE `patient` (
   CONSTRAINT FK_patient_pres FOREIGN KEY (`p_pres`) REFERENCES `prescription`(`pres_id`) ON DELETE CASCADE ON UPDATE CASCADE
  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
+----------------- NOTE ALL VALUES ARE FAKE AND JUST INSERTED FOR EXPERIMENTATION -----------------------------
 -- Dumping data for table `patient`
 --
 -- can we autoinsert id????
-INSERT INTO `patient` (`pname`, `pmobile`,`pemail`) VALUES
-('ram', '11223344',`email@email.com`),
-('shyam','9452162510','hey@hey.com');
+INSERT INTO `patient` (`p_id`, `p_name`,`p_mobile`, `p_email`, `p_cat`, `p_doc`, `p_pres`) VALUES
+('PAT001', 'Renae Gould','7887940451', 'renne123@renne.com', 'Group 1', 'D002', 2),
+('PAT002', 'Hadi Gill','6127999112', 'gill123@gill.com', 'Group 2', 'D003', 4),
+('PAT003', 'Rubi Sykes','7217636748', 'skyhigh@sky.com', 'Group 1', 'D003', 5),
+('PAT004', 'Andrea Garrett','5896321475', 'andrea@and.com', 'Group 3', 'D001', 1),
+('PAT005', 'Zac Nairn', '9512357864', 'zaczac@zac.com', 'Group 2', 'D004', 3),
+('PAT006', 'Britany Khan','9658321475', 'britania@brit.com', 'Group 1', 'D005', 6),
+('PAT007','Anika Hicks','8524693178', 'anika789@anika.com', 'Group 2', 'D001', 3);
 -- --------------------------------------------------------
 
 --
@@ -59,11 +64,11 @@ INSERT INTO `patient` (`pname`, `pmobile`,`pemail`) VALUES
 -- ADD PRIMARY KEY (`pid`);
 
 CREATE TABLE `doctor` (
-  `doc_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `doc_id` varchar(15) NOT NULL,
   `doc_name` varchar(255) NOT NULL,
-  `doc_mobile` int(255) NOT NULL,
+  `doc_mobile` varchar(15) NOT NULL,
   `doc_email` varchar(255) NOT NULL,
-  `doc_hos` int(10) UNSIGNED NOT NULL,
+  `doc_hos` varchar(15) NOT NULL,
   -- `dspec` varchar(255) NOT NULL
   PRIMARY KEY (`doc_id`),
   CONSTRAINT FK_doctor_hos FOREIGN KEY (`doc_hos`) REFERENCES `hospital`(`hos_id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -73,11 +78,12 @@ CREATE TABLE `doctor` (
 -- Dumping data for table `doctor`
 --
 
-INSERT INTO `doctor` (`usn`, `book_id`, `book_name`) VALUES
-('exname', '1234567854', 'email@email.com','ent specialist'),
-('exname', '1234567854', 'email@email.com','ent specialist'),
-('exname', '1234567854', 'email@email.com','ent specialist'),
-('exname', '1234567854', 'email@email.com','ent specialist');
+INSERT INTO `doctor` (`doc_id`, `doc_name`, `doc_mobile`, `doc_email`, `doc_hos`) VALUES
+('D001', 'Peter Field', '8329660993','peter123@peter.com','H003'),
+('D002', 'Anna Weeks', '6127981733','weeks123@year.com','H001'),
+('D003', 'Camilla Valencia', '6127948488','camilla@camilla.com','H003'),
+('D004', 'Suhail Howarth', '7185872080','suhail555@suhail.com','H002'),
+('D005', 'Eamon Simmons', '7397078485','simmons420@simmons.com','H004');
 
 -- --------------------------------------------------------
 
@@ -90,7 +96,7 @@ INSERT INTO `doctor` (`usn`, `book_id`, `book_name`) VALUES
 --
 
 CREATE TABLE `hospital` (
-  `hos_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `hos_id` varchar(15) NOT NULL,
   `hos_name` varchar(255) NOT NULL,
   `hos_type` varchar(255) NOT NULL,
   `hos_address` varchar(255) NOT NULL,
@@ -101,10 +107,13 @@ CREATE TABLE `hospital` (
 -- Dumping data for table `hospital`
 --auto insert id???
 
-INSERT INTO `hospital` (`sid`, `username`, `name`, `password`, `email`) VALUES
-('', 'johndoe', 'dental', 'yelahanka'),
-('', 'rohan77', 'dental', 'airport'),
-('', 'ajayk99', 'dental', 'erth');
+INSERT INTO `hospital` (`hos_id`, `hos_name`, `hos_type`, `hos_address`) VALUES
+('H001', 'Lakewood Medical Clinic', 'COVID Care Center', '11th Floor, 28 Gopal Das Bhawan, Barakhamba Road, Delhi, Delhi, 110001'),
+('H002', 'Angelstone General Hospital', 'Dedicated COVID Health Centre', 
+'48/2, Opp Pink Apt, 7 Bunglows, B/h Municipal Garden, Andheri (west), Mumbai, Maharashtra, 400061'),
+('H003', 'Memorial Community Hospital', 'Dedicated COVID Health Centre', 
+'169, Nagraj Complex, Old Kasai Road, Raja Market, Avenue Road, Bangalore, Karnataka, 560002'),
+('H004', 'Golden Oak Hospital', 'Dedicated COVID Hospital', '169, Govindappa Naicken St, Parrys, Chennai, Tamil Nadu, 600001');
 
 -- --------------------------------------------------------
 
@@ -126,13 +135,17 @@ CREATE TABLE `category` (
   PRIMARY KEY (`cat_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
+-- Creation Of Patient Table and inserting values
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`ctype`, `cdescription`, `csymptoms` ) VALUES
-('asymptomatic', 'doing good', 'none')
-('asymptomatic', 'doing good', 'none')
+INSERT INTO `category` (`cat_type`, `cat_description`, `cat_criteria` ) VALUES
+('Group 1', 'Suspect and confirmed cases clinically assigned as mild and very mild', 
+'Cases presenting with fever and/or upper respiratory tract illness (Influenza Like Illness)'),
+('Group 2', 'Suspect and confirmed cases clinically assigned as moderate', 
+'Pneumonia  with  no  signs  of  severe  disease  (Respiratory  Rate  15  to 30/minute, SpO290%-94%)'),
+('Group 3', 'Suspect and confirmed cases clinically assigned as severe', 
+'Severe Pneumonia (with respiratory rate greater than or equal to 30/minute and/or SpO2 less than 90% in room air) or ARDS or Septicshock');
 --
 
 -- Table structure for table `Prescription`
@@ -142,7 +155,7 @@ CREATE TABLE `prescription` (
   `pres_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `medicine` varchar(255) NOT NULL,
   `pres_cat` varchar(255) NOT NULL,
-  `pres_doc` int(10) UNSIGNED NOT NULL,
+  `pres_doc` varchar(15) NOT NULL,
   -- `prescription` varchar(255) NOT NULL,
   PRIMARY KEY (`pres_id`),
   CONSTRAINT FK_prescription_cat FOREIGN KEY (`pres_cat`) REFERENCES `category`(`cat_type`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -153,8 +166,11 @@ CREATE TABLE `prescription` (
 -- Dumping data for table `category`
 --
 
-INSERT INTO `prescription` (`medicine`, `prescription` ) VALUES
-('dosename', 'tice a day')
-('dosename', 'tice a day');
-
+INSERT INTO `prescription` (`medicine`, `pres_cat`, `pres_doc`) VALUES
+('Naftinil Gemnuma', 'Group 1', 'D002'),
+('Tacrotecan Selenil', 'Group 1', 'D003'),
+('Alphazone Alasine', 'Group 2', 'D001'),
+('Agenebutrol', 'Group 1', 'D004'),
+('Angiotensin Neuronadryl', 'Group 3', 'D003'),
+('Hexapion', 'Group 2', 'D005');
 
