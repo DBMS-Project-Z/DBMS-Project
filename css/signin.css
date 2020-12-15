@@ -4,7 +4,7 @@ body {
 }
 
 body {
-  display: flex;
+  /* display: flex; */
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
@@ -43,9 +43,26 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  /* flex-grow: 100; */
 }
 
 .vertical-hr {
   border-left: 1px solid rgba(166, 166, 164, 0.75);
   height: 81vh;
+}
+
+.login-footer {
+  margin: 27px 0 15px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-footer a {
+  display: inline-block;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: #f5f5f5;
+  padding: 3px 30px;
 }
