@@ -1,3 +1,36 @@
+<?php
+
+session_start();
+if(isset($_SESSION['uid'])) header('location: admin-page.html');
+
+include('dbconnection.php');
+if(isset($_POST['login'])) {
+    $username = $_POST['user'];
+    $password = $_POST['password'];
+
+    $query = "SELECT * FROM Admin WHERE username='$username' AND password='$password'";
+    $run = mysqli_query($conn, $query);
+    $row = mysqli_num_rows($run);
+
+    if($row < 1) {
+        ?>
+
+        <script type="text/javascript">
+            alert("Invalid Details");
+            window.open('login.php', '_self');
+        </script>
+        <?php
+
+    } else {
+        $data = mysqli_fetch_assoc($run);
+        $id = $data['uid'];
+        $_SESSION['uid'] = $id;
+        header('location: admin-page.html');
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,13 +47,13 @@
     <body>
         <div class="flex-container">
             <div class="form-signin">
-                <form>
+                <form action="login.php" method="post">
                     <h1 class="h3 mb-3 fw-normal">Sign in for Administrator</h1>
                     <label for="adminId" class="visually-hidden">Unique Id</label>
-                    <input type="text" id="adminId" class="form-control" placeholder="Unique ID" required autofocus>
+                    <input type="text" id="adminId" name="user" class="form-control" placeholder="Username" required autofocus>
                     <label for="password" class="visually-hidden">Password</label>
-                    <input type="password" id="password" class="form-control" placeholder="Password" required>
-                    <button class="w-100 btn btn-lg btn-primary admin-btn" type="submit">Sign in</button>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                    <button class="w-100 btn btn-lg btn-primary admin-btn" name="login" type="submit">Sign in</button>
                 </form>
             </div>
             <!-- <div class="vertical-hr"></div>
