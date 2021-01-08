@@ -34,7 +34,7 @@ CREATE TABLE `patient` (
   `p_email` varchar(255) NOT NULL,
   `p_cat` varchar(225) NOT NULL,
   `p_doc` varchar(15) NOT NULL,
-  `p_pres` int(10) UNSIGNED NOT NULL,
+  `p_pres` varchar(15) NOT NULL,
   PRIMARY KEY (`p_id`),
   CONSTRAINT FK_patient_cat FOREIGN KEY (`p_cat`) REFERENCES `category`(`cat_type`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT FK_patient_doc FOREIGN KEY (`p_doc`) REFERENCES `doctor`(`doc_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -46,13 +46,13 @@ CREATE TABLE `patient` (
 --
 -- can we autoinsert id????
 INSERT INTO `patient` (`p_id`, `p_name`,`p_mobile`, `p_email`, `p_cat`, `p_doc`, `p_pres`) VALUES
-('PAT001', 'Renae Gould','7887940451', 'renne123@renne.com', 'Group 1', 'D002', 2),
-('PAT002', 'Hadi Gill','6127999112', 'gill123@gill.com', 'Group 2', 'D003', 4),
-('PAT003', 'Rubi Sykes','7217636748', 'skyhigh@sky.com', 'Group 1', 'D003', 5),
-('PAT004', 'Andrea Garrett','5896321475', 'andrea@and.com', 'Group 3', 'D001', 1),
-('PAT005', 'Zac Nairn', '9512357864', 'zaczac@zac.com', 'Group 2', 'D004', 3),
-('PAT006', 'Britany Khan','9658321475', 'britania@brit.com', 'Group 1', 'D005', 6),
-('PAT007','Anika Hicks','8524693178', 'anika789@anika.com', 'Group 2', 'D001', 3);
+('PAT001', 'Renae Gould','7887940451', 'renne123@renne.com', 'Group 1', 'D002', 'PRES2'),
+('PAT002', 'Hadi Gill','6127999112', 'gill123@gill.com', 'Group 2', 'D003', 'PRES4'),
+('PAT003', 'Rubi Sykes','7217636748', 'skyhigh@sky.com', 'Group 1', 'D003', "PRES5"),
+('PAT004', 'Andrea Garrett','5896321475', 'andrea@and.com', 'Group 3', 'D001', 'PRES1'),
+('PAT005', 'Zac Nairn', '9512357864', 'zaczac@zac.com', 'Group 2', 'D004', 'PRES3'),
+('PAT006', 'Britany Khan','9658321475', 'britania@brit.com', 'Group 1', 'D005', 'PRES6'),
+('PAT007','Anika Hicks','8524693178', 'anika789@anika.com', 'Group 2', 'D001', 'PRES3');
 -- --------------------------------------------------------
 
 --
@@ -152,7 +152,7 @@ INSERT INTO `category` (`cat_type`, `cat_description`, `cat_criteria` ) VALUES
 --
 
 CREATE TABLE `prescription` (
-  `pres_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `pres_id` varchar(15) NOT NULL,
   `medicine` varchar(255) NOT NULL,
   `pres_cat` varchar(255) NOT NULL,
   `pres_doc` varchar(15) NOT NULL,
@@ -166,11 +166,11 @@ CREATE TABLE `prescription` (
 -- Dumping data for table `category`
 --
 
-INSERT INTO `prescription` (`medicine`, `pres_cat`, `pres_doc`) VALUES
-('Naftinil Gemnuma', 'Group 1', 'D002'),
-('Tacrotecan Selenil', 'Group 1', 'D003'),
-('Alphazone Alasine', 'Group 2', 'D001'),
-('Agenebutrol', 'Group 1', 'D004'),
-('Angiotensin Neuronadryl', 'Group 3', 'D003'),
-('Hexapion', 'Group 2', 'D005');
+INSERT INTO `prescription` (`pres_id`, `medicine`, `pres_cat`, `pres_doc`) VALUES
+('PRES1','Naftinil Gemnuma', 'Group 1', 'D002'),
+('PRES2', 'Tacrotecan Selenil', 'Group 1', 'D003'),
+('PRES3', 'Alphazone Alasine', 'Group 2', 'D001'),
+('PRES4', 'Agenebutrol', 'Group 1', 'D004'),
+('PRES5', 'Angiotensin Neuronadryl', 'Group 3', 'D003'),
+('PRES6', 'Hexapion', 'Group 2', 'D005');
 

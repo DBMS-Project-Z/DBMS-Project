@@ -33,6 +33,10 @@
         .hos-details {
             line-height: 1.8;
         }
+
+        .row {
+            line-height: 1.8;
+        }
     </style>
     <body>
 
@@ -43,10 +47,10 @@
             </div>
             <div>
                 <div class="col-12">
-                <div class="p-3"><a href=""><button class="btn btn-details btn-outline-primary">View Doctor Details</button></a></div>
+                <div class="p-3"><a href="doc-details.php?id=<?php echo $id ?>&name=<?php echo $name ?>"><button class="btn btn-details btn-outline-primary">View Hospital Doctor Details</button></a></div>
                 </div>
                 <div class="col-12">
-                <div class="p-3"><a href=""><button class="btn btn-details btn-outline-primary">View Patient Details</button></a></div>
+                <div class="p-3"><a href="patient-info.php?id=<?php echo $id ?>&name=<?php echo $name ?>"><button class="btn btn-details btn-outline-primary">View Hospital Patient Details</button></a></div>
                 </div>
             </div>
         </div>
