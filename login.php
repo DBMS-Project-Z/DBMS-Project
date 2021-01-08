@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if(isset($_SESSION['uid'])) header('location: admin-page.html');
+if(isset($_SESSION['uid'])) header('location: admin/admin-page.html');
 
 include('dbconnection.php');
 if(isset($_POST['login'])) {
@@ -25,7 +25,7 @@ if(isset($_POST['login'])) {
         $data = mysqli_fetch_assoc($run);
         $id = $data['uid'];
         $_SESSION['uid'] = $id;
-        header('location: admin-page.html');
+        header('location: admin/admin-page.html');
     }
 }
 
