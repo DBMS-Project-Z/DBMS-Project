@@ -106,7 +106,7 @@
             <div class="row text-center">
                 <div class="form">
                     <form class="login-form" method="post" action="del-hos.php">
-                        <label for="id">Hospital ID : <input id="id" type="text" placeholder="Enter Hospital ID" name="hid" required></label><br>
+                        <label for="id">Hospital ID : <input id="id" type="text" placeholder="Enter Hospital ID to be deleted" name="hid" required></label><br>
                         <button type="submit" class="btn btn-details btn-primary" name="submit" value="delete"> Delete </button><br>
                         <a href="hos-options.php"><button class="btn btn-details btn-primary" type="button">Back To Options</button></a>
                     </form>

@@ -106,7 +106,7 @@
             <div class="row text-center">
                 <div class="form">
                     <form class="login-form" method="post" action="del-doc.php">
-                        <label for="id">Doctor ID : <input id="id" type="text" placeholder="Enter Hospital ID" name="did" required></label><br>
+                        <label for="id">Doctor ID : <input id="id" type="text" placeholder="Enter Doctor ID to be deleted" name="did" required></label><br>
                         <button type="submit" class="btn btn-details btn-primary" name="submit" value="delete"> Delete </button><br>
                         <a href="doc-options.php"><button class="btn btn-details btn-primary" type="button">Back To Options</button></a>
                     </form>

@@ -2,16 +2,16 @@
     if(isset($_POST['submit'])) {
         include('../dbconnection.php');
         // echo $_POST['cat'];
-        $cat = $_POST['cat'];
+        $pid = $_POST['pid'];
 
-        $query = "DELETE FROM `category` WHERE cat_type='$cat'";
+        $query = "DELETE FROM `patient` WHERE p_id='$pid'";
         $run = mysqli_query($conn,$query);
 
         if($run == true) {
             ?>
             <script type="text/javascript">
                alert("Information Deleted!");
-               window.open('cat-options.php','_self');
+               window.open('patient-options.php','_self');
             </script>
             <?php
         }
@@ -37,11 +37,19 @@
     <style>
 
         .del-head {
-            margin-top: 6%;
+            margin: 6% 0 3%;
 
         }
 
-        .details-container {
+        .row-container div:first-child {
+            border-radius: 9px 0 0 9px;
+        }
+
+        .row-container div:last-child {
+            border-radius: 0 9px 9px 0;
+        }
+
+        /* .details-container {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -49,7 +57,7 @@
 
         .details-container div {
             border-radius: 12px;
-        }
+        } */
 
         .login-form {
             width: 500px;
@@ -73,18 +81,20 @@
     </style>
     <body class="text-center">
 
-        <h4 class="del-head">Category Types</h4>
+        <h4 class="del-head">Patient Ids With their Corresponding Names</h4>
 
         <?php
             include('../dbconnection.php');
-            $query = "SELECT *FROM`category`";
+            $query = "SELECT * FROM `patient`";
             $run = mysqli_query($conn, $query);
             $row = mysqli_num_rows($run);
             while($data = mysqli_fetch_assoc($run)) {
                 ?>
                 <div class="container-fluid p-3 bg-white details-container">
-                    <div class="row p-1 border border-primary">
-                        <div class="col-12"><?php echo $data['cat_type'] ?></div>
+                    <div class="row p-1 justify-content-center row-container">
+                        <div class="col-2 p-1 border border-primary"><?php echo $data['p_id'] ?></div>
+                        <!-- <div class="col-1">-</div> -->
+                        <div class="col-2 p-1 border border-primary"><?php echo $data['p_name'] ?></div>
                     </div>
                 </div>
                 <?php
@@ -95,10 +105,10 @@
         <div class="container d-flex justify-content-center">
             <div class="row text-center">
                 <div class="form">
-                    <form class="login-form" method="post" action="del-cat.php">
-                        <label for="type">Category : <input id="type" type="text" placeholder="Enter Category Name to be deleted" name="cat" required></label><br>
+                    <form class="login-form" method="post" action="del-pat.php">
+                        <label for="id">Patient ID : <input id="id" type="text" placeholder="Enter Patient ID to delete" name="pid" required></label><br>
                         <button type="submit" class="btn btn-details btn-primary" name="submit" value="delete"> Delete </button><br>
-                        <a href="cat-options.php"><button class="btn btn-details btn-primary" type="button">Back To Options</button></a>
+                        <a href="patient-options.php"><button class="btn btn-details btn-primary" type="button">Back To Options</button></a>
                     </form>
                 </div>
             </div>

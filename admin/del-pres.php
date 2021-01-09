@@ -106,7 +106,7 @@
             <div class="row text-center">
                 <div class="form">
                     <form class="login-form" method="post" action="del-pres.php">
-                        <label for="id">Prescription ID : <input id="id" type="text" placeholder="Enter Prescription ID" name="preid" required></label><br>
+                        <label for="id">Prescription ID : <input id="id" type="text" placeholder="Enter Prescription ID to be deleted" name="preid" required></label><br>
                         <button type="submit" class="btn btn-details btn-primary" name="submit" value="delete"> Delete </button><br>
                         <a href="pres-options.php"><button class="btn btn-details btn-primary" type="button">Back To Options</button></a>
                     </form>
