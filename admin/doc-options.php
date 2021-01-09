@@ -20,17 +20,17 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 p-3">
-                    <a href=""><button type="button" class="btn btn-outline-primary">Add Into Doctor Table</button></a>
+                    <a href="add-doc.php"><button type="button" class="btn btn-outline-primary">Add Into Doctor Table</button></a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 p-3">
-                    <a href=""><button type="button" class="btn btn-outline-primary">Delete from Doctor Table</button></a>
+                    <a href="del-doc.php"><button type="button" class="btn btn-outline-primary">Delete from Doctor Table</button></a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 p-3">
-                    <a href=""><button type="button" class="btn btn-outline-primary">Update Doctor Table</button></a>
+                    <a href="update-doc.php"><button type="button" class="btn btn-outline-primary">Update Doctor Table</button></a>
                 </div>
             </div>
         </div>
