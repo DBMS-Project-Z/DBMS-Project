@@ -20,17 +20,17 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 p-3">
-                    <a href=""><button type="button" class="btn btn-outline-primary">Add Into Category Table</button></a>
+                    <a href="add-cat.php"><button type="button" class="btn btn-outline-primary">Add Into Category Table</button></a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 p-3">
-                    <a href=""><button type="button" class="btn btn-outline-primary">Delete from Category Table</button></a>
+                    <a href="del-cat.php"><button type="button" class="btn btn-outline-primary">Delete from Category Table</button></a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 p-3">
-                    <a href=""><button type="button" class="btn btn-outline-primary">Update Category Table</button></a>
+                    <a href="update-cat.php"><button type="button" class="btn btn-outline-primary">Update Category Table</button></a>
                 </div>
             </div>
         </div>
