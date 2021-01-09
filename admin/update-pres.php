@@ -4,24 +4,23 @@
         // echo $_POST['cat'];
         // echo $_POST['des'];
         // echo $_POST['criteria'];
-        $did = $_POST['did'];
-        $dname = $_POST['dname'];
-        $dphone = $_POST['dphone'];
-        $demail = $_POST['dmail'];
-        $dhos = $_POST['dhos'];
+        $preid = $_POST['preid'];
+        $prename = $_POST['prename'];
+        $precat = $_POST['precat'];
+        $predoc = $_POST['predoc'];
 
         // $query0 = "SET foreign_key_checks = 0;";
 
-        $query = "UPDATE `doctor`
-                SET `doc_name`='$dname', `doc_mobile`='$dphone', `doc_email`='$demail', `doc_hos`='$dhos'
-                WHERE `doc_id` = '$did'";
+        $query = "UPDATE `prescription`
+                SET `medicine`='$prename', `pres_cat`='$precat', `pres_doc`='$predoc'
+                WHERE `pres_id` = '$preid'";
         $run = mysqli_query($conn,$query);
 
         if($run == true) {
             ?>
             <script type="text/javascript">
                alert("Information Updated!");
-               window.open('doc-options.php','_self');
+               window.open('pres-options.php','_self');
             </script>
             <?php
         }
@@ -68,7 +67,7 @@
         }
 
         .login-form label input {
-            width: 300px;
+            width: 315px;
         }
 
         /* .login-form label.begin {
@@ -93,20 +92,20 @@
     </style>
     <body class="text-center">
         
-        <h4 class="up-head" style="margin-top: 3%;">Doctor IDs with Their corresponding names</h4>
+        <h4 class="up-head" style="margin: 3% 0;">Prescription IDs with Their corresponding medicine names</h4>
 
         <?php
             include('../dbconnection.php');
-            $query = "SELECT * FROM `doctor`";
+            $query = "SELECT * FROM `prescription`";
             $run = mysqli_query($conn, $query);
             $row = mysqli_num_rows($run);
             while($data = mysqli_fetch_assoc($run)) {
                 ?>
                 <div class="container-fluid p-3 bg-white details-container">
                     <div class="row p-1 justify-content-center row-container">
-                        <div class="col-2 p-1 border border-primary"><?php echo $data['doc_id'] ?></div>
+                        <div class="col-2 p-1 border border-primary"><?php echo $data['pres_id'] ?></div>
                         <!-- <div class="col-1">-</div> -->
-                        <div class="col-2 p-1 border border-primary"><?php echo $data['doc_name'] ?></div>
+                        <div class="col-2 p-1 border border-primary"><?php echo $data['medicine'] ?></div>
                     </div>
                 </div>
                 <?php
@@ -118,15 +117,15 @@
         <div class="container d-flex justify-content-center">
             <div class="row text-center">
                 <div class="form">
-                    <form class="login-form" method="post" action="update-doc.php">
-                        <label class="begin" for="id">Doctor ID : <input class="first" id="id" type="text" placeholder="Doctor Id" name="did" required></label><br>
-                        <label class="begin" for="name">Doctor Name : <input class="second" id="name" type="text" placeholder="Name of Doctor" name="dname" required></label><br>
-                        <label class="begin" for="phone">Doctor Mobile No. : <input class="third" id="phone" type="text" placeholder="Mobile No.of Doctor" name="dphone" required></label><br>
-                        <label class="begin" for="email">Doctor E-mail : <input class="fourth" id="email" type="text" placeholder="Doctor e-mail" name="dmail" required></label><br>
-                        <label class="begin" for="hos">Working Hospital : <input class="fifth" id="hos" type="text" placeholder="Hospital ID doctor belongs to" name="dhos" required></label><br>
+                    <form class="login-form" method="post" action="update-pres.php">
+                        <label class="begin" for="id">Prescription ID : <input class="first" id="id" type="text" placeholder="Prescription Id" name="preid" required></label><br>
+                        <label class="begin" for="name">Prescribed Medicine : <input class="second" id="name" type="text" placeholder="Medicine Name for Prescription" name="prename" required></label><br>
+                        <label class="begin" for="med">Prescription Category : <input class="third" id="med" type="text" placeholder="For which category prescription belongs to" name="precat" required></label><br>
+                        <label class="begin" for="predoc">Prescribed by Doctor : <input class="fourth" id="predoc" type="text" placeholder="Doctor's ID who prescribed it" name="predoc" required></label><br>
+                        <!-- <label class="begin" for="hos">Working Hospital : <input class="fifth" id="hos" type="text" placeholder="Hospital ID doctor belongs to" name="dhos" required></label><br> -->
                         <!-- <label for="description">Hospital Address : <textarea name="haddress" id="description" cols="30" rows="4" placeholder="Address" required></textarea></label><br> -->
                         <button type="submit" class="btn btn-details btn-primary" name="submit" value="Submit"> Update </button><br>
-                        <a href="doc-options.php"><button class="btn btn-details btn-primary" type="button">Back To Options</button></a>
+                        <a href="pres-options.php"><button class="btn btn-details btn-primary" type="button">Back To Options</button></a>
                     </form>
                 </div>
             </div>
