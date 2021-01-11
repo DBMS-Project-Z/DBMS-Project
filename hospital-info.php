@@ -22,10 +22,11 @@
         <!-- Bootstrap Core CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         <!-- Custom CSS -->
-        <link rel="stylesheet" href="">
+        <!-- <link rel="stylesheet" href=""> -->
     </head>
     <style>
         body {
+            background-image: linear-gradient(75deg, #dbf6e9, #bce6eb);
             background-color: #f9f8fa;
             margin-top: 10%;
         }
