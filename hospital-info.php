@@ -26,7 +26,7 @@
     </head>
     <style>
         body {
-            background-image: linear-gradient(75deg, #dbf6e9, #bce6eb);
+            /* background-image: linear-gradient(75deg, #dbf6e9, #bce6eb); */
             background-color: #f9f8fa;
             margin-top: 10%;
         }
