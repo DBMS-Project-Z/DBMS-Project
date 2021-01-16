@@ -94,7 +94,7 @@
                         <label class="begin" for="id">Doctor ID : <input class="first" id="id" type="text" placeholder="Doctor Id" name="did" required></label><br>
                         <label class="begin" for="name">Doctor Name : <input class="second" id="name" type="text" placeholder="Name of Doctor" name="dname" required></label><br>
                         <label class="begin" for="phone">Doctor Mobile No. : <input class="third" id="phone" type="text" placeholder="Mobile No.of Doctor" name="dphone" required></label><br>
-                        <label class="begin" for="email">Doctor E-mail : <input class="fourth" id="email" type="text" placeholder="Doctor e-mail" name="dmail" required></label><br>
+                        <label class="begin" for="email">Doctor E-mail : <input class="fourth" id="email" type="email" placeholder="Doctor e-mail" name="dmail" required></label><br>
                         <label class="begin" for="hos">Working Hospital : <input class="fifth" id="hos" type="text" placeholder="Hospital ID doctor belongs to" name="dhos" required></label><br>
                         <!-- <label for="description">Hospital Address : <textarea name="haddress" id="description" cols="30" rows="4" placeholder="Address" required></textarea></label><br> -->
                         <button type="submit" class="btn btn-details btn-primary" name="submit" value="Submit"> Add Details </button><br>
